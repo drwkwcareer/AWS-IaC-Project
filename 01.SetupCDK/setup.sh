@@ -1,7 +1,6 @@
 echo "前処理（unzip, npm のインストール）を始めます。"
 sudo apt update
-sudo apt install unzip npm maven openjdk-21-jdk n -y
-sudo n 22
+sudo apt install unzip npm maven openjdk-21-jdk -y
 
 echo "AWSCLIのインストールを始めます。"
 if ! command -v aws >/dev/null 2>&1; then
