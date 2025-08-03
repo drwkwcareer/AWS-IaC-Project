@@ -27,6 +27,8 @@ public class MyJavaCdkPjApp {
                 sgStack.sg
         );
         
+        EksStack eksStack = new EksStack(app, "EksStack", StackProps.builder().build(), vpcStack.vpc);
+        
         app.synth();
     }
 }
