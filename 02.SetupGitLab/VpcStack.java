@@ -32,5 +32,7 @@ public class VpcStack extends Stack {
                     .build()
             ))
             .build();
+
+         TaggingUtil.tagVpcAndSubnets(vpc);
     }
 }
