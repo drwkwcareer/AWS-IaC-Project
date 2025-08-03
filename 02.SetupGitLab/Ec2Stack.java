@@ -8,25 +8,14 @@ import software.amazon.awscdk.services.ec2.*;
 import java.util.Collections;
 import java.util.Map;
 
-public class MyJavaCdkPjStack extends Stack {
-    public MyJavaCdkPjStack(final Construct scope, final String id, final StackProps props) {
+public class Ec2Stack extends Stack {
+    public Ec2Stack(final Construct scope, final String id, final StackProps props, Vpc vpc, SecurityGroup sg) {
         super(scope, id, props);
-
-        // VPC
-        VpcConstruct vpcConstruct = new VpcConstruct(this, "VpcConstruct");
-        Vpc vpc = vpcConstruct.vpc;
-
-        // Tagging
-        TaggingUtil.tagVpcAndSubnets(vpc);
-
-        // Security Group
-        SecurityGroupConstruct sgConstruct = new SecurityGroupConstruct(this, "SgConstruct", vpc);
-        SecurityGroup sg = sgConstruct.sg;
 
         // User Data
         UserData userData = UserDataUtil.createGitLabUserData();
 
-        // EC2 Instance (as before)
+        // EC2 Instance
         ISubnet publicSubnet = vpc.getPublicSubnets().get(0);
         Instance instance = Instance.Builder.create(this, "gitlab-server")
             .instanceType(InstanceType.of(InstanceClass.BURSTABLE2, InstanceSize.LARGE))
