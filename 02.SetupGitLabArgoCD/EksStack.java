@@ -24,22 +24,18 @@ public class EksStack extends Stack {
             .build();
 
         eksCluster.addFargateProfile("kube-system", FargateProfileOptions.builder()
-            .selectors(List.of(
-                FargateProfileSelector.builder().namespace("kube-system").build()
-            ))
+            .selectors(List.of(Selector.builder().namespace("kube-system").build()))
             .subnets(List.of(
                 SubnetSelection.builder().subnetType(SubnetType.PRIVATE_WITH_EGRESS).build()
             ))
             .build());
 
         eksCluster.addFargateProfile("argocd", FargateProfileOptions.builder()
-            .selectors(List.of(
-                FargateProfileSelector.builder().namespace("argocd").build()
-            ))
+            .selectors(List.of(Selector.builder().namespace("argocd").build()))
             .subnets(List.of(
                 SubnetSelection.builder().subnetType(SubnetType.PRIVATE_WITH_EGRESS).build()
             ))
             .build());
-
+        
     }
 }
