@@ -1,15 +1,21 @@
 package com.myorg;
 
 import software.constructs.Construct;
+import software.amazon.awscdk.core.Stack;
+import software.amazon.awscdk.core.StackProps;
 import software.amazon.awscdk.services.ec2.*;
 
 import java.util.Arrays;
 
-public class VpcConstruct extends Construct {
+public class VpcStack extends Stack {
     public final Vpc vpc;
 
-    public VpcConstruct(final Construct scope, final String id) {
-        super(scope, id);
+    public VpcStack(final Construct scope, final String id) {
+        this(scope, id, null);
+    }
+
+    public VpcStack(final Construct scope, final String id, final StackProps props) {
+        super(scope, id, props);
 
         vpc = Vpc.Builder.create(this, "MyVpc")
             .maxAzs(2)
