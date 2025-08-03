@@ -19,6 +19,14 @@ public class MyJavaCdkPjApp {
                 vpcStack.vpc
         );
 
+        Ec2Stack ec2Stack = new Ec2Stack(
+                app,
+                "Ec2Stack",
+                StackProps.builder().build(),
+                vpcStack.vpc,
+                sgStack.sg
+        );
+        
         app.synth();
     }
 }
