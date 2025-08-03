@@ -10,7 +10,7 @@ public class MyJavaCdkPjApp {
     public static void main(final String[] args) {
         App app = new App();
 
-        new VPCStack(app, "VPCStack", StackProps.builder().build());
+        new VpcStack(app, "VpcStack", StackProps.builder().build());
 
         app.synth();
     }
